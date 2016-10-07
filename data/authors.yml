@@ -20,6 +20,11 @@ aenright:
 anandts:
   gravatar: 16ad6ab055a894211ff38b168479af83
 
+apevec:
+  name: Alan Pevec
+  organization: Red Hat
+  gravatar: 6993a4d145f48b14a80063f561baa577
+
 arindamchoudhury:
   gravatar: 055bd1c5fc55ef78d6bbb4fa3b4a9ffe
 
@@ -48,6 +53,11 @@ frank:
   nick: Frank
   photo: userpics/655/0M6WGWVXENPZ.JPG
   gravatar: b7ce7ed3b2ed415b09d4fcbab5829b4d
+
+hguemar:
+  name: Haïkel Guémar
+  organization: RDO
+  gravatar: fcb6a76144dfca95aea54fd75fc2d422
 
 gfidente:
   photo: userpics/146/J4OCK3G5FJMQ.png
@@ -145,6 +155,11 @@ snecklifter:
 shardy:
   gravatar: d3a10de70fda6f02d2aa7b28115ee1ea
 
+trown:
+  name: John Trowbridge
+  organization: Red Hat
+  gravatar: ad66cfba3cda807c686cc96c93eaadae
+
 whayutin:
   gravatar: eabcbce5c8dbdb345c9c5b645f0003b3
 
@@ -153,3 +168,9 @@ rleander:
   organization: Red Hat
   title: Software Engineer
   gravatar: 393162e8cf938857611d0b45890063bf
+
+emalikova:
+  name: Eliska Malikova
+  organization: Red Hat
+  gravatar: 438c0632e9cf7f1d50d2ce9e84a7728b
+
