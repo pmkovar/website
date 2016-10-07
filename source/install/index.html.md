@@ -8,36 +8,62 @@ wiki_revision_count: 20
 wiki_last_updated: 2016-01-07
 ---
 
-# Installing and Configuring RDO
+# Installing and configuring RDO
 
 [ ← Docs](Docs)
 
-While the [Quickstart](Quickstart) is sufficient for an initial test deployment, there are many other ways that you may wish to deploy OpenStack with RDO. Documents here also cover configuring your deployment.
+For an initial test deployment, follow the [Packstack quickstart](/install/quickstart). While using Packstack is sufficient as a proof of concept, there are other ways that you can use to deploy OpenStack with RDO. If you need to deploy a production-ready cloud, possibly with HA, see the [TripleO quickstart](/tripleo).
 
-**TODO: Verify these links, and update with latest content of the
-install directory**
-
+<div class="splits">
+<div class="split-third with-more">
 ### Installation
 
-*   [Quick start guide with Packstack](Quickstart)
+*   [TripleO quickstart &ndash; production deployment, with HA](/tripleo)
+*   [Packstack quickstart &ndash; proof of concept for single node](/install/quickstart)
+*   [More information on Packstack](Packstack_cookbook)
+*   [Repositories](Repositories)
+</div>
 
+<div class="split-third with-more">
+### Upgrade and uninstallation
+
+*   [Upgrading RDO &ndash; primarily for manual and Packstack-based deployments](upgrading-rdo)
+*   [Uninstalling RDO](Uninstalling RDO)
+</div>
+
+<div class="split-third">
 ### Configuration
 
-*   [Configuring Horizon to use SSL](HorizonSSL)
-*   [Securing services](Securing_services)
+*   [Running an instance](Running an instance)
+*   [Adding a compute node](Adding a compute node)
 *   [Setting up high availability](/ha)
 *   [Getting started with Ceilometer](CeilometerQuickStart)
-*   [Launching your first VM ](Running an instance)
-*   [Image Resources](Image resources)
-*   [Repository information ](Repositories)
-*   [Adding a compute node](Adding a compute node)
-*   [Troubleshooting](Troubleshooting)
-*   [Uninstalling RDO](Uninstalling RDO)
-*   [Packstack Cookbook](Packstack_cookbook)
-*   [Virtualized Foreman dev setup](Virtualized_Foreman_dev_setup)
-*   [Creating CentOS and Fedora images ready for Openstack](Creating CentOS and Fedora images ready for Openstack)
+</div>
+</div>
 
+<div class="splits">
+<div class="split-third with-more">
+### VMs and images
+
+*   [Launching your first VM ](Running an instance)
+*   [Image resources](Image resources)
+*   [Creating CentOS and Fedora images ready for Openstack](Creating CentOS and Fedora images ready for Openstack)
+</div>
+
+<div class="split-third with-more">
+### Cloud management
+
+*   [Using ManageIQ on OpenStack](/cloud-management/using-manageiq-on-openstack)
+</div>
+
+<div class="split-third">
 ### Hardware
 
 *   [ Cheap hardware for a home cloud/lab](Home lab)
+</div>
+</div>
+
+### Troubleshooting
+
+*   [Troubleshooting](Troubleshooting)
 
