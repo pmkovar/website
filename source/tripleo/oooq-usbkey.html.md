@@ -16,7 +16,10 @@ The TripleO USB key a.k.a oooq-usbkey combines tripleo-quickstart and prebuilt R
 
 First download the following image:
 
-    curl -O http://artifacts.ci.centos.org/artifacts/rdo/images/mitaka/ooo-usbkey.img
+    curl -O https://images.rdoproject.org/ooo-usbkey/mitaka.img
+
+You may wish to verify the MD5 sum, which you can find at
+[https://images.rdoproject.org/ooo-usbkey/mitaka.img.md5](https://images.rdoproject.org/ooo-usbkey/mitaka.img.md5)
 
 Make sure you know the device your USB key is assigned to:
 
@@ -29,7 +32,7 @@ Now copy the image to the USB key.
 
 **Note:** loopback mounts will also work if you do not have a key.
 
-    dd if=ooo-usbkey.img of=/dev/sdb
+   dd if=ooo-usbkey.img of=/dev/sdb
 
 Once the image has been copied to the USB key, plug the key into your test machine.
 

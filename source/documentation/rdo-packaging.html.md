@@ -28,7 +28,7 @@ OpenStack projects.
 
 Following diagram shows the global packaging process in RDO.
 
-![RDO packaging workflow](../images/rdo-full-workflow-high-level-no-buildlogs.png)
+![RDO packaging workflow](/images/documentation/rdo-full-workflow-high-level-no-buildlogs.png)
 
 
 <a id="distgit"></a>
@@ -126,6 +126,27 @@ rpm-&lt;release> and &lt;release>-rdo branches:
 * In `%files` avoid using `%{version}` and use instead wildcard `*`
 
 
+#### rpm-master and rpm-master-head branches
+
+As previously stated, the `rpm-master` branch is used to package RDO Trunk using
+the master source branch. However, There are two RDO Trunk builder building
+packages from that branch:
+
+* The **main** builder, which pins libraries and clients to the versions included
+  in [upper-constraints](http://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt).
+
+* The **master-head**, that chases master in all packages, including libraries, clients, etc.
+
+Initially, both builders use the `rpm-master` distgit branch. However, we may
+find an issue for a client or library in `master-head` that does not show up
+on the `main` builder yet. In those cases, we will create a temporary distgit
+branch called `rpm-master-head`, where the fix will be merged.
+
+Having this temporary `rpm-master-head` branch will allow us to fix the build
+for the package, and once the change in the master repo reaches a tagged release
+used by the `main` builder, we can simply cherry-pick the change and remove
+the temporary branch.
+
 
 ### Patches branch
 
@@ -176,7 +197,7 @@ Bugs are tracked as
 
 Poke `jruzicka` on `#rdo` for help/hate/suggestions about `rdopkg`.
 
-See also [man rdopkg](https://www.rdoproject.org/packaging/rdopkg/rdopkg.1.html).
+See also [man rdopkg](https://github.com/openstack-packages/rdopkg/blob/master/doc/rdopkg.1.adoc).
 
 
 <a id="rdoinfo"></a>
@@ -291,7 +312,7 @@ When a new package is required in RDO, it must be added to RDO Trunk packaging.
 To include new packages, following steps are required:
 
 1. Create a "Package Review" bug in [Red Hat bugzilla](https://bugzilla.redhat.com/)
-following the best practices described in [RDO OpenStack Packaging Guidelines](/documentation/rdo-packaging-guidelines/).
+following the best practices described in [RDO OpenStack Packaging Guidelines](/documentation/rdo-packaging-guidelines/). Once the bug has been created, and an initial license check has been conducted, you can continue with steps 2 and 3.
 
 2. Send a review adding the new project in rdo.yml to the [rdoinfo project in
 review.rdoproject.org](https://review.rdoproject.org/r/#/q/project:rdoinfo). In
@@ -327,10 +348,14 @@ and comment all releases where package should be built, as for example:
 file, etc...) for the initial import as in [this example](https://review.rdoproject.org/r/#/c/1417/).
 This will trigger a CI job to test the package build.
 
-4. Once the initial import in the distgit is merged, send a new review to rdoinfo
-project to remove the `under-review` tag and uncomment the required versions where the
-package must be built ([example](https://review.rdoproject.org/r/#/c/1422/)).
-This change can be sent before merging review in step 3 if a `Depends-On: <gerrit-change-id step 3>` is added.
+4. Once the initial distgit import is merged, go back to the Package Review
+Bugzilla and update it with the final spec and SRPM. Then, the formal package 
+review will be conducted by the reviewer, who will set the `rdo-review +` flag.
+
+5. Finally, send a new review to rdoinfo project to remove the `under-review` tag and uncomment the required versions where the package must be built ([example](https://review.rdoproject.org/r/#/c/1422/)).
+This change can be sent before merging review in step 3 if a `Depends-On: <gerrit-change-id step 3>`
+is added, but the review will only be approved once the `rdo-review +` flag has been
+set in the Bugzilla.
 
 Once the change is merged in rdoinfo, a new package should be automatically built
 and published in the [RDO Trunk repos](http://trunk.rdoproject.org/centos7-master/report.html).
@@ -342,6 +367,30 @@ RDO project is working to automate as much as possible this process. If you need
 help to add new packages, you can ask on `#rdo` or `rdo-list` mailing list.
 
 <a id="#rdo-pkg-guide"></a>
+
+### How to add a new puppet module to RDO Trunk
+
+Adding a new puppet module to RDO Trunk is done using the same process as adding a new
+package to RDO Trunk with a few small differences. Use the following steps referencing the above
+[How to add a new package to RDO Trunk](/documentation/rdo-packaging/#how-to-add-a-new-package-to-rdo-trunk)
+for details on submitting a new puppet module. The steps here correspond to the
+steps above offering details specific to puppet modules.
+
+1. Submit the Package Review, instead of including a spec file reference that the
+spec file will be generated.
+
+2. Send a review to rdoinfo according to the package requirements. The under-review tag
+is still required. Use this as example content:
+        - project: puppet-congress
+          conf: rpmfactory-puppet
+          tags:
+            under-review:
+            #ocata-uc:
+            #ocata:
+
+3. Generate the spec file to submit to the new distgit project using https://github.com/strider/opm-toolbox
+
+4. Process is the same as standard packages
 
 ## RDO CloudSIG Packaging Guide
 
